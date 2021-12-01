@@ -1,4 +1,4 @@
-# KommatiPara_APP
+# KommatiPara_APPTest
 
 A very small company called KommatiPara that deals with bitcoin trading has two separate datasets dealing with clients that they want to collate to starting interfacing more with their clients. For this purpose, KommatiPara application has been created in order to enable the company to reach useful data for a new marketing push. The application conducts ETL process as follows:
 
@@ -18,86 +18,7 @@ Application receives three arguments from the users which are:
 
 Additionally, the application keeps log records in order to search when unexpected problem occurs. Log records are kept and according to the rotating policy, the application rotates the log every day with a back up count of 5 
 
-# Installation
-
-## For pyspark
-
-Spark is an open source project under Apache Software Foundation. Spark can be downloaded here: https://spark.apache.org/downloads.html
-
-PySpark installation using PyPI is as follows: ```bash 
-$ pip install pyspark ```
-
-
-## For chispa test
-
-Install the chispa with: 
-```python 
-pip install chispa 
-```
-
-# Configuration
-
-##  Spark session
-
-```python
-import findspark
-
-findspark.init() 
-```
-
-```python import pyspark
-from pyspark.sql import SparkSession
-
-
-spark = SparkSession \
-    .builder \
-    .master("local") \
-    .appName("<give a name>") \
-    .config("spark.some.config.option", "some-value") \
-    .getOrCreate() 
-```
-    
-## Chispa test 
-
-```python 
-from chispa.dataframe_comparer import *
-
-import pytest
-
-from chispa.column_comparer import assert_column_equality
-```
-
-##  Logging
-
-```python 
-import logging
-import time
-
-from logging.handlers import TimedRotatingFileHandler
-
-def logger():
-    logger = logging.getLogger('<Give the name for the log file>')
-
-    logHandler = TimedRotatingFileHandler(filename="<Give the name for the log file>", when="D", interval=1, backupCount=5)
-    logFormatter = logging.Formatter('%(asctime)s %(name)-12s %(message)s')
-    logHandler.setFormatter(logFormatter)
-    logger.setLevel(logging.INFO)
-
-
-    logger.handlers:
-    streamhandler = logging.StreamHandler()
-    streamhandler.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(message)s')
-    streamhandler.setFormatter(formatter)
-
-    logger.addHandler(streamhandler)
-    logger.addHandler(logHandler)
-
-    return logger 
-
-logger = logger()
-```
-
+ 
 ## CSV file
 
 ```python
